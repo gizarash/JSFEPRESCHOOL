@@ -17,7 +17,7 @@ body {
   font-size: 20px;
   font-weight: 400;
 }
-h1, h2, h3 {
+h1, h2 {
   margin: 0;
   font-family: 'Merriweather', serif;
   font-weight: 700;
@@ -44,7 +44,7 @@ a:hover {
   height: 90px;
   display: flex;
   justify-content: space-between;
-  background: url('/assets/img/hero-bg.jpg');
+  background: url('../img/hero-bg.jpg');
   background-repeat: no-repeat;
   background-position: center 0;
 }
@@ -56,7 +56,7 @@ a:hover {
   display: block;
   width: 50px;
   height: 50px;
-  background: url('/assets/svg/logo.svg');
+  background: url('../svg/logo.svg');
   background-size: contain;
   background-repeat: no-repeat;  
   transition: 0.3s;
@@ -98,7 +98,7 @@ a.lang-active {
   height: 820px;
   padding-top: 160px;
   padding-left: 80px;
-  background: url('/assets/img/hero-bg.jpg');
+  background: url('../img/hero-bg.jpg');
   background-repeat: no-repeat;
   background-position: center -90px;
 }
@@ -135,4 +135,54 @@ h1 {
 }
 .hero-text-block .btn {
   margin-top: 25px;
+}
+.section-title {
+  width: 700px;
+  margin: 0 auto;
+  margin-top: 100px;
+  color: #bdae82;
+  font-size: 40px;
+  line-height: 80px;
+  text-align: center;
+  background-image: linear-gradient(to top, #000 39px, #bdae82 39px, #bdae82 41px, #000 41px);
+}
+.section-title span {
+  padding: 0 20px;
+  background-color: #000000;
+}
+.skills-items {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.skill-item {
+  width: 320px;
+  padding: 140px 20px 8px;
+  background-repeat: no-repeat;
+  background-position: center 60px;
+  text-align: center;
+}
+.skill-title {
+  font-size: 20px;
+  line-height: 40px;
+}
+.skill-desc {
+  font-size: 18px;
+  line-height: 36px;
+}
+.skill-item:nth-child(1) {
+  background-image: url('../svg/camera.svg');
+  background-size: 62px 50px;
+}
+.skill-item:nth-child(2) {
+  background-image: url('../svg/video.svg');
+  background-size: 60px 50px;
+}
+.skill-item:nth-child(3) {
+  background-image: url('../svg/image.svg');
+  background-size: 66px 50px;
+}
+.skill-item:nth-child(4) {
+  background-image: url('../svg/mic.svg');
+  background-size: 32px 50px;
 }
