@@ -201,3 +201,23 @@ h1 {
   flex-wrap: wrap;
   gap: 25px;
 }
+.video-player {
+  margin-top: 60px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* text-align: center; */
+}
+.btn-play {
+  position: absolute;
+  height: 130px;
+  width: 130px;
+  border: none;
+  background-image: url('../svg/play.svg');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+.btn-play:hover {
+  filter: invert(26%) sepia(15%) saturate(638%) hue-rotate(7deg) brightness(92%) contrast(87%);
+}
