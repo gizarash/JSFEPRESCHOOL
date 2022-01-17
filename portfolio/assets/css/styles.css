@@ -221,3 +221,42 @@ h1 {
 .btn-play:hover {
   filter: invert(26%) sepia(15%) saturate(638%) hue-rotate(7deg) brightness(92%) contrast(87%);
 }
+.price-items {
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+.price-item {
+  width: 450px;
+  padding-top: 10px;
+  padding-bottom: 40px;
+  border: 3px solid #bdae82;
+  text-align: center;
+}
+.price-item h3 {
+  margin: 0;
+  margin-top: 28px;
+  font-family: 'Merriweather', serif;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 56px;
+}
+.price-value {
+  margin: 0;
+  margin-top: 21px;
+  font-family: 'Merriweather', serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 48px;
+  color: #bdae82;
+}
+.price-desc {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+.price-desc span {
+  display: block;
+  font-size: 18px;
+  line-height: 36px;
+}
