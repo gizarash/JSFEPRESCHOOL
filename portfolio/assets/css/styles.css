@@ -119,8 +119,10 @@ h1 {
   width: 220px;
   height: 55px;
   padding: 0;
-  border: 0;
+  border: 2px solid #bdae82;
+  background-color: transparent;
   cursor: pointer;
+  color: #bdae82;
   font-family: inherit;
   font-size: 20px;
   line-height: 40px;
@@ -139,7 +141,7 @@ h1 {
 .section-title {
   width: 700px;
   margin: 0 auto;
-  margin-top: 100px;
+  margin-top: 101px;
   color: #bdae82;
   font-size: 40px;
   line-height: 80px;
@@ -185,4 +187,17 @@ h1 {
 .skill-item:nth-child(4) {
   background-image: url('../svg/mic.svg');
   background-size: 32px 50px;
+}
+.season-switch {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 60px;
+}
+.photo-gallery {
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
 }
