@@ -57,6 +57,14 @@ a:hover {
   margin-left: 20px;
   margin-top: 20px;
 }
+@media (max-width: 768px) {
+  .header {
+    background: url('../img/hero-bg-tablet.jpg');
+  }
+  .logo {
+    margin-left: 60px;
+  }
+}
 .logo-img {
   display: block;
   width: 50px;
@@ -88,6 +96,11 @@ ul.header-menu>li {
   margin-right: 31px;
   padding: 0;
 }
+@media (max-width: 768px) {
+  ul.header-menu {
+    display: none;
+  }
+}
 .lang {
   margin-right: 20px;
   font-weight: 700;
@@ -96,8 +109,29 @@ ul.header-menu>li {
   margin-left: 9px;
   margin-right: 8px;
 }
+@media (max-width: 768px) {
+  .lang-delimiter {
+    margin-left: 11px;
+    margin-right: 18px;
+  }
+}
 a.lang-active {
   color: #bdae82;
+}
+.hamburger {
+  display: none;
+  width: 50px;
+  height: 50px;
+  margin-right: 64px;
+  background: url('../svg/hamburger.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  transition: 0.3s;
+}
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
 }
 .hero {
   height: 820px;
