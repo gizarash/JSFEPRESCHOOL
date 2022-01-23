@@ -49,7 +49,7 @@ a:hover {
   height: 90px;
   display: flex;
   justify-content: space-between;
-  background: url('../img/hero-bg.jpg');
+  background-image: url('../img/hero-bg.jpg');
   background-repeat: no-repeat;
   background-position: center 0;
 }
@@ -59,7 +59,7 @@ a:hover {
 }
 @media (max-width: 768px) {
   .header {
-    background: url('../img/hero-bg-tablet.jpg');
+    background-image: url('../img/hero-bg-tablet.jpg');
   }
   .logo {
     margin-left: 60px;
@@ -137,7 +137,7 @@ a.lang-active {
   height: 820px;
   padding-top: 160px;
   padding-left: 80px;
-  background: url('../img/hero-bg.jpg');
+  background-image: url('../img/hero-bg.jpg');
   background-repeat: no-repeat;
   background-position: center -90px;
 }
@@ -153,6 +153,27 @@ h1 {
 }
 .hero-text-block p {
   margin-top: 10px;
+}
+@media (max-width: 768px) {
+  .hero {
+    height: 500px;
+    padding-top: 78px;
+    padding-left: 60px;
+    background-image: url('../img/hero-bg-tablet.jpg');
+  }
+  .hero-text-block {
+    width: 390px;
+    padding-right: 0;
+    font-size: 20px;
+    line-height: 24px;
+  }
+  h1 {
+    font-size: 32px;
+    line-height: 64px;
+  }
+  .hero-text-block p {
+    margin-top: 20px;
+  }
 }
 .btn {
   width: 220px;
@@ -176,6 +197,11 @@ h1 {
 }
 .hero-text-block .btn {
   margin-top: 25px;
+}
+@media (max-width: 768px) {
+  .hero-text-block .btn {
+    margin-top: 60px;
+  }
 }
 .section-title {
   width: 700px;
