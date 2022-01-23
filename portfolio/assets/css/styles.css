@@ -219,8 +219,9 @@ h1 {
 }
 .skills-items {
   display: flex;
-  justify-content: space-around;
   flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
 }
 .skill-item {
   width: 320px;
@@ -252,6 +253,36 @@ h1 {
 .skill-item:nth-child(4) {
   background-image: url('../svg/mic.svg');
   background-size: 32px 50px;
+}
+@media (max-width: 768px) {
+  .section-title {
+    width: 364px;
+    height: 80px;
+    margin-top: 80px;
+    font-size: 32px;
+    line-height: 80px;
+    text-align: center;
+    background-image: linear-gradient(to top, #000 40px, #bdae82 40px, #bdae82 42px, #000 42px);
+  }
+  .skills-items {
+    gap: 44px;
+    margin-top: 36px;
+    margin-bottom: 135px;
+  }
+  .skill-item {
+    width: 300px;
+    background-position: center 9px;
+    padding: 88px 10px 25px;
+  }
+  .skill-item h3 {
+    margin: 0;
+    font-size: 20px;
+    line-height: 40px;
+  }
+  .skill-desc {
+    margin-top: 20px;
+    line-height: 22px;
+  }
 }
 .season-switch {
   display: flex;
