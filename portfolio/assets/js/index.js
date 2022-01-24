@@ -16,3 +16,5 @@ function closeMenu(event) {
 
 hamburger.addEventListener('click', toggleMenu);
 mobMenuList.addEventListener('click', closeMenu);
+
+console.log('Все пункты выполнены полностью!')
