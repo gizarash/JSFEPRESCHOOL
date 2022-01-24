@@ -16,6 +16,7 @@ body {
   font-family: 'Inter', sans-serif;
   font-size: 20px;
   font-weight: 400;
+  overflow-x: hidden;
 }
 h1, h2 {
   margin: 0;
@@ -128,10 +129,37 @@ a.lang-active {
   width: 50px;
   height: 50px;
   margin-right: 64px;
-  background: url('../svg/hamburger.svg');
-  background-size: contain;
-  background-repeat: no-repeat;
-  transition: 0.3s;
+  transition: 0.5s;
+}
+.hamburger .line{
+  position: relative;
+  width: 50px;
+  height: 3px;
+  background-color: #ffffff;
+  display: block;
+  margin: 10px auto;
+  z-index: 30;
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.hamburger:hover{
+  cursor: pointer;
+}
+.hamburger.is-active .line:nth-child(2){
+  opacity: 0;
+}
+.hamburger.is-active .line:nth-child(1){
+  -webkit-transform: translateY(13px) rotate(45deg);
+  -ms-transform: translateY(13px) rotate(45deg);
+  -o-transform: translateY(13px) rotate(45deg);
+  transform: translateY(13px) rotate(45deg);
+}
+.hamburger.is-active .line:nth-child(3){
+  -webkit-transform: translateY(-13px) rotate(-45deg);
+  -ms-transform: translateY(-13px) rotate(-45deg);
+  -o-transform: translateY(-13px) rotate(-45deg);
+  transform: translateY(-13px) rotate(-45deg);
 }
 @media (max-width: 768px) {
   .hamburger {
@@ -622,4 +650,30 @@ input:-webkit-autofill:active {
     margin-right: 8px;
     margin-left: 6px;
   }
+}
+.mob-menu {
+  position: fixed;
+  top: 0;
+  right: -620px;
+  z-index: 10;
+  padding-left: 127px;
+  padding-top: 134px;
+  max-width: 620px;
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  transition: 0.5s;
+}
+.is-active {
+  right: 0;
+}
+.mob-menu ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-size: 35px;
+  line-height: 72.55px;
+}
+.mob-menu li {
+  margin-bottom: 16px;
 }
