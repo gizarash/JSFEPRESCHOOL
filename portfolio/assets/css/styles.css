@@ -287,8 +287,16 @@ h1 {
 .season-switch {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 5px;
   margin-top: 60px;
+}
+@media (max-width: 900px) {
+  .season-switch {
+    max-width: 660px;
+    margin: 0 auto;
+    margin-top: 50px;
+  }
 }
 .photo-gallery {
   margin-top: 60px;
