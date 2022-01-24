@@ -1,8 +1,20 @@
-console.log("Ваша отметка - 100 балла(ов\)");
-console.log("Отзыв по пунктам ТЗ:");
-console.log("1. Вёрстка валидная +10");
-console.log("2. Вёрстка семантическая +20");
-console.log("3. Вёрстка соответствует макету +48");
-console.log("4. Требования к css + 12");
-console.log("5. Интерактивность, реализуемая через css +20");
-console.log("Все пункты выполнены полностью!");
+const hamburger = document.querySelector('.hamburger');
+const mobMenu = document.querySelector('.mob-menu');
+const mobMenuList = document.querySelector('.mob-menu-list');
+
+function toggleMenu() {
+  hamburger.classList.toggle('is-active');
+  mobMenu.classList.toggle('is-active');
+}
+
+function closeMenu(event) {
+  if (event.target.classList.contains('mob-menu-link')) {
+    hamburger.classList.remove('is-active');
+    mobMenu.classList.remove('is-active');
+  }
+}
+
+hamburger.addEventListener('click', toggleMenu);
+mobMenuList.addEventListener('click', closeMenu);
+
+console.log('Все пункты выполнены полностью!')
