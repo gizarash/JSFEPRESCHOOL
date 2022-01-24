@@ -540,3 +540,27 @@ input:-webkit-autofill:active {
 .icon:hover {
   filter: invert(26%) sepia(15%) saturate(638%) hue-rotate(7deg) brightness(92%) contrast(87%);
 }
+@media (max-width: 768px) {
+  .footer {
+    margin-top: 28px;
+    flex-direction: column;
+    justify-content: flex-start;
+    line-height: 24px;
+  }
+  .copyright span {
+    margin-right: 14px;
+    margin-left: 10px;
+  }
+  .rs {
+    position: static;
+    margin-top: 16px;
+  }
+  .social {
+    position: static;
+    margin-top: 29px;
+  }
+  .icon {
+    margin-right: 8px;
+    margin-left: 6px;
+  }
+}
