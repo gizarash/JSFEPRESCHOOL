@@ -354,6 +354,7 @@ h1 {
   margin-top: 60px;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 25px;
 }
 .price-item {
@@ -388,6 +389,15 @@ h1 {
   display: block;
   font-size: 18px;
   line-height: 36px;
+}
+@media (max-width: 768px) {
+  .price-items {
+    margin-top: 50px;
+  }
+  .price-item {
+    width: 420px;
+    margin-bottom: 27px;
+  }
 }
 .contacts.container {
   min-height: 700px;
