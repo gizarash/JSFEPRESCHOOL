@@ -1,8 +1,13 @@
+import i18Obj from './translate.js';
+
 const hamburger = document.querySelector('.hamburger');
 const mobMenu = document.querySelector('.mob-menu');
 const mobMenuList = document.querySelector('.mob-menu-list');
 const portfolioBtns = document.querySelector('.season-switch');
 const portfolioImages = document.querySelectorAll('.portfolio-image');
+const langNode = document.querySelector('.lang');
+const i18nNodes = document.querySelectorAll('[data-i18]');
+const langLinks = document.querySelectorAll('[data-lang]');
 
 function toggleMenu() {
   hamburger.classList.toggle('is-active');
@@ -33,9 +38,32 @@ function preloadSeasonImages(season) {
   }
 }
 
+function translate(event) {
+  if("lang" in event.target.dataset) {
+    event.preventDefault();
+    const lang = event.target.dataset.lang;
+    i18nNodes.forEach((currentElement) => {
+      if (currentElement.placeholder) {
+        currentElement.placeholder = getTranslate(lang, currentElement.dataset.i18);
+        currentElement.textContent = '';
+      } else {
+        currentElement.textContent = getTranslate(lang, currentElement.dataset.i18);
+      }
+    });
+    langLinks.forEach((link) => link.classList.remove('lang-active'));
+    event.target.classList.add('lang-active');
+  }
+  
+}
+
+function getTranslate(lang, key) {
+  return i18Obj[lang][key];
+}
+
 hamburger.addEventListener('click', toggleMenu);
 mobMenuList.addEventListener('click', closeMenu);
 portfolioBtns.addEventListener('click', changeImage);
-
+portfolioBtns.addEventListener('click', changeImage);
+langNode.addEventListener('click', translate);
 
 console.log('Все пункты выполнены полностью!')
