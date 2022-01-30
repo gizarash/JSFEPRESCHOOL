@@ -235,7 +235,7 @@ h1 {
   line-height: 40px;
   transition: 0.3s;
 }
-.btn-gold {
+.active {
   background-color: #bdae82;
   color: #000000;
 }
