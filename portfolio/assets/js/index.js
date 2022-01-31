@@ -19,6 +19,8 @@ const themeClasses = [
   'section-title-inner',
   'btn'
 ];
+let currentTheme = 'dark';
+let currentLang = 'en';
 
 function toggleMenu() {
   hamburger.classList.toggle('is-active');
@@ -49,45 +51,97 @@ function preloadSeasonImages(season) {
   }
 }
 
-function translate(event) {
+function translateHandle(event) {
   if("lang" in event.target.dataset) {
     event.preventDefault();
     const lang = event.target.dataset.lang;
-    i18nNodes.forEach((currentElement) => {
-      if (currentElement.placeholder) {
-        currentElement.placeholder = getTranslate(lang, currentElement.dataset.i18);
-        currentElement.textContent = '';
-      } else {
-        currentElement.textContent = getTranslate(lang, currentElement.dataset.i18);
-      }
-    });
-    langLinks.forEach((link) => link.classList.remove('lang-active'));
-    event.target.classList.add('lang-active');
+    translate(lang);
   }
-  
+}
+
+function translate(lang) {
+  i18nNodes.forEach((currentElement) => {
+    if (currentElement.placeholder) {
+      currentElement.placeholder = getTranslate(lang, currentElement.dataset.i18);
+      currentElement.textContent = '';
+    } else {
+      currentElement.textContent = getTranslate(lang, currentElement.dataset.i18);
+    }
+  });
+  langLinks.forEach((link) => {
+    link.dataset.lang == lang ?link.classList.add('lang-active') : link.classList.remove('lang-active');
+  });
+  currentLang = lang;
 }
 
 function getTranslate(lang, key) {
   return i18Obj[lang][key];
 }
 
-function toggleTheme() {
+function enableLightTheme() {
   themeClasses.forEach((className) => {
     const elementList = document.querySelectorAll('.' + className);
     elementList.forEach((element) => {
-      element.classList.toggle('light-theme');
+      element.classList.add('light-theme');
       if (element.classList.contains('section-title')) {
-        element.classList.toggle('section-title-light');
+        element.classList.add('section-title-light');
       }
     });
   });
 }
 
+function enableDarkTheme() {
+  themeClasses.forEach((className) => {
+    const elementList = document.querySelectorAll('.' + className);
+    elementList.forEach((element) => {
+      element.classList.remove('light-theme');
+      if (element.classList.contains('section-title')) {
+        element.classList.remove('section-title-light');
+      }
+    });
+  });
+}
+
+function toggleTheme() {
+  if (currentTheme == 'dark') {
+    enableLightTheme();
+    currentTheme = 'light';
+  } else {
+    enableDarkTheme();
+    currentTheme = 'dark';
+  }
+}
+
+function setLocalStorage() {
+  localStorage.setItem('theme', currentTheme);
+  localStorage.setItem('lang', currentLang);
+}
+
+function getLocalStorage() {
+  if(localStorage.getItem('theme')) {
+    const theme = localStorage.getItem('theme');
+    if (theme == 'light') {
+      enableLightTheme();
+      currentTheme = 'light';
+    } else {
+      enableDarkTheme();
+      currentTheme = 'dark';
+    }
+  }
+  if(localStorage.getItem('lang')) {
+    const lang = localStorage.getItem('lang');
+    translate(lang);
+  }
+}
+
+window.addEventListener('load', getLocalStorage)
+window.addEventListener('beforeunload', setLocalStorage)
+
 hamburger.addEventListener('click', toggleMenu);
 mobMenuList.addEventListener('click', closeMenu);
 portfolioBtns.addEventListener('click', changeImage);
 portfolioBtns.addEventListener('click', changeImage);
-langNode.addEventListener('click', translate);
+langNode.addEventListener('click', translateHandle);
 themeSwitcher.addEventListener('click', toggleTheme);
 
 console.log('Все пункты выполнены полностью!')
