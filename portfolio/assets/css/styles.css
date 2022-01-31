@@ -108,7 +108,7 @@ ul.header-menu>li {
   }
 }
 .lang {
-  margin-right: 20px;
+  margin-right: 30px;
   font-weight: 700;
 }
 .lang-delimiter {
@@ -129,6 +129,7 @@ a.lang-active {
   width: 50px;
   height: 50px;
   margin-right: 64px;
+  margin-left: 30px;
   transition: 0.5s;
 }
 .hamburger .line{
@@ -253,16 +254,18 @@ h1 {
 .section-title {
   width: 700px;
   margin: 0 auto;
-  margin-top: 101px;
   color: #bdae82;
   font-size: 40px;
   line-height: 80px;
   text-align: center;
   background-image: linear-gradient(to top, #000 39px, #bdae82 39px, #bdae82 41px, #000 41px);
 }
-.section-title span {
+.section-title-inner {
   padding: 0 20px;
   background-color: #000000;
+}
+.skills {
+  padding-top: 101px;
 }
 .skills-items {
   display: flex;
@@ -305,16 +308,17 @@ h1 {
   .section-title {
     width: 364px;
     height: 80px;
-    margin-top: 80px;
     font-size: 32px;
     line-height: 80px;
     text-align: center;
     background-image: linear-gradient(to top, #000 40px, #bdae82 40px, #bdae82 42px, #000 42px);
   }
+  .section-title-light {
+    background-image: linear-gradient(to top, #fff 40px, #000 40px, #000 42px, #fff 42px);
+  }
   .skills-items {
     gap: 44px;
     margin-top: 36px;
-    margin-bottom: 135px;
   }
   .skill-item {
     width: 300px;
@@ -335,6 +339,9 @@ h1 {
   .section-title {
     width: 260px;
   }
+}
+.portfolio {
+  padding-top: 101px;
 }
 .season-switch {
   display: flex;
@@ -357,6 +364,9 @@ h1 {
   flex-wrap: wrap;
   gap: 25px;
 }
+.video {
+  padding-top: 101px;
+}
 .video-player {
   margin-top: 60px;
   height: 705px;
@@ -373,9 +383,12 @@ h1 {
   height: 130px;
   width: 130px;
   border: none;
+  background-color: transparent;
   background-image: url('../svg/play.svg');
   background-repeat: no-repeat;
   background-position: 50% 50%;
+  cursor: pointer;
+  transition: 0.3s;
 }
 .btn-play:hover {
   filter: invert(26%) sepia(15%) saturate(638%) hue-rotate(7deg) brightness(92%) contrast(87%);
@@ -401,6 +414,10 @@ h1 {
     width: 75px;
     background-image: url('../svg/play_small.svg');
   }
+}
+.price {
+  padding-top: 101px;
+  padding-bottom: 52px;
 }
 .price-items {
   margin-top: 60px;
@@ -458,7 +475,6 @@ h1 {
 }
 .contacts.container {
   min-height: 700px;
-  margin-top: 52px;
   padding-top: 60px;
   padding-right: 20px;
   background: url('../img/contacts-bg.jpg');
@@ -527,7 +543,6 @@ input:-webkit-autofill:active {
     flex-direction: column;
     align-items: center;
     min-height: 600px;
-    margin-top: 52px;
     padding: 0;
     background: url('../img/contacts-bg-tablet.jpg');
     background-size: auto 600px;
@@ -676,4 +691,37 @@ input:-webkit-autofill:active {
 }
 .mob-menu li {
   margin-bottom: 16px;
+}
+.light-theme {
+  background-color: #fff;
+  color: #000;
+}
+.light-theme.active {
+  background-color: #bdae82;
+  color: #000000;
+}
+.light-theme:hover {
+  color: #000;
+}
+button.light-theme:hover {
+  background-color: #bdae82;
+  color: #fff;
+}
+.light-theme.active:hover {
+  color: #fff;
+}
+.section-title-light {
+  background-image: linear-gradient(to top, #fff 39px, #000 39px, #000 41px, #fff 41px);
+}
+.theme-switcher {
+  width: 45px;
+  height: 45px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background: url('../svg/sun.svg');
+  transition: 0.3s;
+  cursor: pointer;
+}
+.theme-switcher:hover {
+  filter: invert(26%) sepia(15%) saturate(638%) hue-rotate(7deg) brightness(92%) contrast(87%);
 }

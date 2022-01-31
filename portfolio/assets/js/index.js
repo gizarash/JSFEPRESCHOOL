@@ -8,6 +8,17 @@ const portfolioImages = document.querySelectorAll('.portfolio-image');
 const langNode = document.querySelector('.lang');
 const i18nNodes = document.querySelectorAll('[data-i18]');
 const langLinks = document.querySelectorAll('[data-lang]');
+const themeSwitcher = document.querySelector('.theme-switcher');
+const themeClasses = [
+  'skills',
+  'portfolio',
+  'video',
+  'price',
+  'mob-menu',
+  'section-title',
+  'section-title-inner',
+  'btn'
+];
 
 function toggleMenu() {
   hamburger.classList.toggle('is-active');
@@ -60,10 +71,23 @@ function getTranslate(lang, key) {
   return i18Obj[lang][key];
 }
 
+function toggleTheme() {
+  themeClasses.forEach((className) => {
+    const elementList = document.querySelectorAll('.' + className);
+    elementList.forEach((element) => {
+      element.classList.toggle('light-theme');
+      if (element.classList.contains('section-title')) {
+        element.classList.toggle('section-title-light');
+      }
+    });
+  });
+}
+
 hamburger.addEventListener('click', toggleMenu);
 mobMenuList.addEventListener('click', closeMenu);
 portfolioBtns.addEventListener('click', changeImage);
 portfolioBtns.addEventListener('click', changeImage);
 langNode.addEventListener('click', translate);
+themeSwitcher.addEventListener('click', toggleTheme);
 
 console.log('Все пункты выполнены полностью!')
