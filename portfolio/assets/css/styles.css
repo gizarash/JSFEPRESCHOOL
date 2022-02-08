@@ -53,6 +53,16 @@ a:hover {
   background-image: url('../img/hero-bg.jpg');
   background-repeat: no-repeat;
   background-position: center 0;
+  color: #ffffff;
+}
+.header a {
+  color: #ffffff;
+}
+.header a:visited {
+  color: #ffffff;
+}
+.header a:hover {
+  color: #bdae82;
 }
 .logo {
   margin-left: 20px;
@@ -162,6 +172,12 @@ a.lang-active {
   -o-transform: translateY(-13px) rotate(-45deg);
   transform: translateY(-13px) rotate(-45deg);
 }
+.hamburger.light-theme {
+  background-color: transparent;
+}
+.hamburger.is-active.light-theme .line {
+  background-color: #000000;
+}
 @media (max-width: 768px) {
   .hamburger {
     display: block;
@@ -179,6 +195,7 @@ a.lang-active {
   background-image: url('../img/hero-bg.jpg');
   background-repeat: no-repeat;
   background-position: center -90px;
+  color: #ffffff;
 }
 .hero-text-block {
   width: 500px;
@@ -373,20 +390,105 @@ h1 {
 }
 .video {
   padding-top: 101px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 .video-player {
   margin-top: 60px;
-  height: 705px;
+  width: 100%;
   position: relative;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  background-image: url('../img/video-preview.jpg');
-  background-repeat: no-repeat;
-  background-position: center center;
   align-items: center;
+}
+.viewer {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.video-controls {
+  width: 100%;
+  height: 60px;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #000000;
+}
+.play-control {
+  width: 40px;
+  height: 40px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+.play-control:hover {
+  filter: invert(26%) sepia(15%) saturate(638%) hue-rotate(7deg) brightness(92%) contrast(87%);
+}
+.play-icon {
+  background-image: url(../svg/player_play.svg);
+}
+.pause-icon {
+  background-image: url(../svg/player_pause.svg);
+}
+.progress-bar {
+  width: calc(80% - 160px);
+  height: 10px;
+  background: linear-gradient(
+    to right,
+    #bdae82 0%,
+    #bdae82 0%,
+    #c8c8c8 0%,
+    #c8c8c8 100%
+  );
+  outline: none;
+  transition: background 450ms ease-in;
+  -webkit-appearance: none;
+}
+.volume-control {
+  width: 40px;
+  height: 40px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+.volume-control:hover {
+  filter: invert(26%) sepia(15%) saturate(638%) hue-rotate(7deg) brightness(92%) contrast(87%);
+}
+.volume-icon {
+  background-image: url(../svg/player_volume.svg);
+}
+.mute-icon {
+  background-image: url(../svg/player_mute.svg);
+}
+.volume-bar {
+  width: calc(20% - 40px);
+  height: 10px;
+  background: linear-gradient(
+    to right,
+    #bdae82 0%,
+    #bdae82 50%,
+    #c8c8c8 50%,
+    #c8c8c8 100%
+  );
+  outline: none;
+  transition: background 450ms ease-in;
+  -webkit-appearance: none;
+}
+.progress-bar::-webkit-slider-thumb,
+.volume-bar::-webkit-slider-thumb {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  -webkit-appearance: none;
+  cursor: ew-resize;
+  background: #fff;
 }
 .btn-play {
   position: absolute;
+  z-index: 10;
   height: 130px;
   width: 130px;
   border: none;
@@ -400,21 +502,9 @@ h1 {
 .btn-play:hover {
   filter: invert(26%) sepia(15%) saturate(638%) hue-rotate(7deg) brightness(92%) contrast(87%);
 }
-@media (max-width: 1100px) {
-  .video-player {
-    height: 534px;
-  }
-}
-@media (max-width: 900px) {
-  .video-player {
-    height: 433px;
-  }
-}
 @media (max-width: 768px) {
   .video-player {
     margin-top: 50px;
-    height: 418px;
-    background-image: url('../img/video-preview-small.jpg');
   }
   .btn-play {
     height: 75px;
@@ -613,6 +703,8 @@ input:-webkit-autofill:active {
   align-items: center;
   font-size: 20px;
   line-height: 50px;
+  background-color: #000000;
+  color: #ffffff;
 }
 .copyright span {
   margin-right: 20px;
@@ -731,4 +823,7 @@ button.light-theme:hover {
 }
 .theme-switcher:hover {
   filter: invert(26%) sepia(15%) saturate(638%) hue-rotate(7deg) brightness(92%) contrast(87%);
+}
+.hidden {
+  display: none;
 }
