@@ -14,7 +14,7 @@
   <title>Portfolio</title>
 </head>
 
-<body>
+<body class="body">
   <header class="header container">
     <div class="logo">
       <a href="/" class="logo-img"></a>
@@ -93,6 +93,13 @@
         <span class="section-title-inner" data-i18="video">Video</span>
       </h2>
       <div class="video-player">
+        <video class="viewer" src="./assets/video/video.mp4"></video>
+        <div class="video-controls">
+          <div class="play-control play-icon"></div>
+          <input type="range" value="0" min="0" max="100" step="1" class="progress-bar">
+          <div class="volume-control volume-icon"></div>
+          <input type="range" value="50" min="0" max="100" step="1" class="volume-bar">
+        </div>
         <button class="btn-play"></button>
       </div>
     </section>

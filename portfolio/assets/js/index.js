@@ -10,6 +10,7 @@ const i18nNodes = document.querySelectorAll('[data-i18]');
 const langLinks = document.querySelectorAll('[data-lang]');
 const themeSwitcher = document.querySelector('.theme-switcher');
 const themeClasses = [
+  'body',
   'skills',
   'portfolio',
   'video',
@@ -17,7 +18,8 @@ const themeClasses = [
   'mob-menu',
   'section-title',
   'section-title-inner',
-  'btn'
+  'btn',
+  'hamburger'
 ];
 let currentTheme = 'dark';
 let currentLang = 'en';
@@ -134,6 +136,33 @@ function getLocalStorage() {
   }
 }
 
+function togglePlayingVideo() {
+  if (isPlaying) {
+    video.pause();
+    isPlaying = false;
+    playControl.classList.remove('pause-icon');
+    playControl.classList.add('play-icon');
+  } else {
+    video.play();
+    isPlaying = true;
+    playControl.classList.remove('play-icon');
+    playControl.classList.add('pause-icon');
+  }
+  playBtn.classList.toggle('hidden');
+}
+
+function muteVideo() {
+  video.muted = true;
+  volumeControl.classList.remove('volume-icon');
+  volumeControl.classList.add('mute-icon');
+}
+
+function unMuteVideo() {
+  video.muted = false;
+  volumeControl.classList.remove('mute-icon');
+  volumeControl.classList.add('volume-icon');
+}
+
 window.addEventListener('load', getLocalStorage)
 window.addEventListener('beforeunload', setLocalStorage)
 
@@ -143,5 +172,53 @@ portfolioBtns.addEventListener('click', changeImage);
 portfolioBtns.addEventListener('click', changeImage);
 langNode.addEventListener('click', translateHandle);
 themeSwitcher.addEventListener('click', toggleTheme);
+
+const video = document.querySelector('.viewer');
+const playControl = document.querySelector('.play-control');
+const playBtn = document.querySelector('.btn-play');
+let isPlaying = false;
+const progressBar = document.querySelector(".progress-bar");
+const volumeBar = document.querySelector(".volume-bar");
+const volumeControl = document.querySelector(".volume-control");
+
+playControl.addEventListener('click', togglePlayingVideo);
+playBtn.addEventListener('click', togglePlayingVideo);
+video.addEventListener('click', togglePlayingVideo);
+
+progressBar.addEventListener('click', e => {
+  const progressBarWidth = window.getComputedStyle(progressBar).width;
+  const currentTime = e.offsetX / parseInt(progressBarWidth) * video.duration;
+  video.currentTime = currentTime;
+  progressBar.style = `background: linear-gradient(to right, rgb(189, 174, 130) 0%, rgb(189, 174, 130) ${currentTime}%, rgb(200, 200, 200) ${currentTime}%, rgb(200, 200, 200) 100%);`;
+}, false);
+setInterval(() => {
+  const currentTime = video.currentTime / video.duration * 100;
+  progressBar.value = currentTime;
+  progressBar.style = `background: linear-gradient(to right, rgb(189, 174, 130) 0%, rgb(189, 174, 130) ${currentTime}%, rgb(200, 200, 200) ${currentTime}%, rgb(200, 200, 200) 100%);`;
+}, 500);
+
+volumeBar.addEventListener('click', e => {
+  const volumeBarWidth = window.getComputedStyle(volumeBar).width;
+  const currentVolume = e.offsetX / parseInt(volumeBarWidth);
+  volumeBar.style = `background: linear-gradient(to right, rgb(189, 174, 130) 0%, rgb(189, 174, 130) ${currentVolume*100}%, rgb(200, 200, 200) ${currentVolume*100}%, rgb(200, 200, 200) 100%);`;
+  if (currentVolume < 0) {
+    video.volume = 0;
+    muteVideo();
+  } else if (currentVolume > 1){
+    video.volume = 1;
+    unMuteVideo();
+  } else {
+    video.volume = currentVolume;
+    unMuteVideo();
+  }
+}, false);
+
+volumeControl.addEventListener('click', e => {
+  if (video.muted) {
+    unMuteVideo();
+  } else {
+    muteVideo();
+  }
+}, false);
 
 console.log('Все пункты выполнены полностью!')
