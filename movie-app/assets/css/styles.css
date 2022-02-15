@@ -38,6 +38,63 @@ body {
 input[type=text]:focus {
   outline: none;
 }
+.main {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.card {
+  width: 300px;
+  margin: 1rem;
+  background-color: #373b69;
+  box-shadow: 0 4px 5px rgb(0 0 0 / 20%);
+  position: relative;
+  overflow: hidden;
+  border-radius: 3px;
+}
+.poster {
+  width: 100%;
+}
+.info {
+  color: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem 1rem;
+  letter-spacing: 0.5px;
+}
+.score {
+  background-color: #22254b;
+  padding: 0.25rem 0.5rem;
+  border-radius: 3px;
+  font-weight: bold;
+}
+.green {
+  color: lightgreen;
+}
+.orange {
+  color: orange;
+}
+.red {
+  color: red;
+}
+.description {
+  
+  padding: 2rem;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  max-height: 100%;
+  background-color: #fff;
+  color: #000000;
+  transform: translateY(101%);
+  overflow-y: auto;
+  transition: transform 0.3s ease-in;
+}
+.card:hover .description {
+  transform: translateY(0);
+}
 .footer {
   display: flex;
   flex-direction: row;
