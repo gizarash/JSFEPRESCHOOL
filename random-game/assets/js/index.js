@@ -23,10 +23,31 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
+const pipes = [];
+pipes.push({
+  x: cvs.width,
+  y: Math.floor(Math.random() * topPipe.height) - topPipe.height
+})
+
 function draw() {
   ctx.drawImage(bg, 0, 0);
-  ctx.drawImage(topPipe, 100, 0);
-  ctx.drawImage(bottomPipe, 100, topPipe.height + pipesGap);
+  
+  for (let i = 0; i < pipes.length; i++) {
+    ctx.drawImage(topPipe, pipes[i].x, pipes[i].y);
+    ctx.drawImage(bottomPipe, pipes[i].x, pipes[i].y + topPipe.height + pipesGap);
+    pipes[i].x--;
+    if (pipes[i].x == 100) {
+      pipes.push({
+        x: cvs.width,
+        y: Math.floor(Math.random() * topPipe.height) - topPipe.height
+      })
+    }
+  }
+
+  if (pipes[0].x+topPipe.width <= 0) {
+      pipes.shift();
+  }
+
   ctx.drawImage(fg, 0, cvs.height - fg.height);
   ctx.drawImage(bird, posX, posY);
 
