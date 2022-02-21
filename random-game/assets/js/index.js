@@ -142,11 +142,9 @@ function setLocalStorage() {
 }
 
 function getLocalStorage() {
-  console.log('getLocalStorage');
   if(localStorage.getItem('results')) {
     lastResults = JSON.parse(localStorage.getItem('results'));
   }
-  console.log(lastResults);
 }
 
 function updateLastResults(score) {
