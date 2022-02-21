@@ -5,6 +5,9 @@ const fg = new Image();
 const bird = new Image();
 const topPipe = new Image();
 const bottomPipe = new Image();
+const takeOffSound = new Audio();
+const addScoreSound = new Audio();
+const collisionSound = new Audio();
 const pipesGap = 100;
 const gravity = 1.5;
 const takeOffHeight = 25;
@@ -20,9 +23,14 @@ bird.src = "./assets/img/bird.png";
 topPipe.src = "./assets/img/topPipe.png";
 bottomPipe.src = "./assets/img/bottomPipe.png";
 
+takeOffSound.src = "./assets/audio/take_off.mp3"
+addScoreSound.src = "./assets/audio/add_score.mp3"
+collisionSound.src = "./assets/audio/ouch.mp3"
+
 document.addEventListener('keydown', (e) => {
   if(e.code == 'Space') {
     posY -= takeOffHeight;
+    takeOffSound.play();
   }
 });
 
@@ -67,11 +75,13 @@ function draw() {
       && (posY < pipes[i].y + topPipe.height || posY + bird.height > pipes[i].y + topPipe.height + pipesGap)
       || posY + bird.height > cvs.height - fg.height) {
         isStarted = false;
+        collisionSound.play();
         playBtn.classList.remove('hidden');
     }
 
     if (pipes[i].x + topPipe.width == 10) {
       score += 10;
+      addScoreSound.play();
     }
   }
 
