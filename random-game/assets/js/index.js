@@ -13,10 +13,15 @@ const gravity = 1.5;
 const takeOffHeight = 25;
 const playBtn = document.querySelector('.play');
 const gameOverText = document.querySelector('.game-over');
+const resultsBtn = document.querySelector('.results-btn');
+const resultsBLock = document.querySelector('.results');
+const closeBtn = document.querySelector('.close');
+const resultList = document.querySelector('.result-list');
 let posX = 10;
 let posY = 200;
 let isStarted = false;
 let score = 0;
+let lastResults = [];
 
 bg.src = "./assets/img/bg.png";
 fg.src = "./assets/img/fg.png";
@@ -43,9 +48,19 @@ cvs.addEventListener('click', (e) => {
 playBtn.addEventListener('click', (e) => {
   playBtn.classList.add('hidden');
   gameOverText.classList.add('hidden');
+  resultsBtn.classList.add('hidden');
+  resultsBLock.classList.remove('show');
   reset();
   isStarted = true;
   draw();
+});
+
+resultsBtn.addEventListener('click', (e) => {
+  resultsBLock.classList.add('show');
+});
+
+closeBtn.addEventListener('click', (e) => {
+  resultsBLock.classList.remove('show');
 });
 
 let pipes = [];
@@ -83,8 +98,10 @@ function draw() {
       || posY + bird.height > cvs.height - fg.height) {
         isStarted = false;
         collisionSound.play();
+        updateLastResults(score);
         playBtn.classList.remove('hidden');
         gameOverText.classList.remove('hidden');
+        resultsBtn.classList.remove('hidden');
     }
 
     if (pipes[i].x + topPipe.width == 10) {
@@ -104,11 +121,11 @@ function draw() {
 
   ctx.fillStyle = "#FFFFFF";
   ctx.font = "24px Arial";
-  ctx.fillText(`Score: ${score}`, 100, cvs.height - 70);
+  ctx.fillText(`Score: ${score}`, 100, cvs.height - 80);
 
   ctx.fillStyle = "#FF0000";
   ctx.font = "16px Arial";
-  ctx.fillText("Use left click or 'space' button to fly", 20, cvs.height - 20);
+  ctx.fillText("Use left click or 'space' button to fly", 20, cvs.height - 60);
 
   if (isStarted) {
     requestAnimationFrame(draw); 
@@ -119,5 +136,36 @@ function takeOff() {
   posY -= takeOffHeight;
   takeOffSound.play();
 }
+
+function setLocalStorage() {
+  localStorage.setItem('results', JSON.stringify(lastResults));
+}
+
+function getLocalStorage() {
+  console.log('getLocalStorage');
+  if(localStorage.getItem('results')) {
+    lastResults = JSON.parse(localStorage.getItem('results'));
+  }
+  console.log(lastResults);
+}
+
+function updateLastResults(score) {
+  lastResults.push(score);
+  if(lastResults.length > 10) lastResults.shift();
+  updateList();
+  setLocalStorage();
+}
+
+function updateList() {
+  resultList.innerHTML = '';
+  for (let i = 0; i < lastResults.length; i++) {
+    const result = document.createElement('li');
+    result.textContent = lastResults[i];
+    resultList.append(result);
+  }
+}
+
+getLocalStorage();
+updateList();
 
 bottomPipe.onload = draw;
