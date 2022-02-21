@@ -12,6 +12,7 @@ const pipesGap = 100;
 const gravity = 1.5;
 const takeOffHeight = 25;
 const playBtn = document.querySelector('.play');
+const gameOverText = document.querySelector('.game-over');
 let posX = 10;
 let posY = 200;
 let isStarted = false;
@@ -28,14 +29,20 @@ addScoreSound.src = "./assets/audio/add_score.mp3"
 collisionSound.src = "./assets/audio/ouch.mp3"
 
 document.addEventListener('keydown', (e) => {
-  if(e.code == 'Space') {
-    posY -= takeOffHeight;
-    takeOffSound.play();
+  if(e.code == 'Space' && isStarted) {
+    takeOff();
+  }
+});
+
+cvs.addEventListener('click', (e) => {
+  if(isStarted) {
+    takeOff();
   }
 });
 
 playBtn.addEventListener('click', (e) => {
   playBtn.classList.add('hidden');
+  gameOverText.classList.add('hidden');
   reset();
   isStarted = true;
   draw();
@@ -77,6 +84,7 @@ function draw() {
         isStarted = false;
         collisionSound.play();
         playBtn.classList.remove('hidden');
+        gameOverText.classList.remove('hidden');
     }
 
     if (pipes[i].x + topPipe.width == 10) {
@@ -94,9 +102,13 @@ function draw() {
 
   posY += gravity;
 
-  ctx.fillStyle = "#000000";
+  ctx.fillStyle = "#FFFFFF";
   ctx.font = "24px Arial";
-  ctx.fillText(`Score: ${score}`, 10, cvs.height - 30);
+  ctx.fillText(`Score: ${score}`, 100, cvs.height - 70);
+
+  ctx.fillStyle = "#FF0000";
+  ctx.font = "16px Arial";
+  ctx.fillText("Use left click or 'space' button to fly", 20, cvs.height - 20);
 
   if (isStarted) {
     requestAnimationFrame(draw); 
@@ -105,6 +117,7 @@ function draw() {
 
 function takeOff() {
   posY -= takeOffHeight;
+  takeOffSound.play();
 }
 
 bottomPipe.onload = draw;

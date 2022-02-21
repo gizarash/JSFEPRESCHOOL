@@ -8,6 +8,7 @@ body {
   display: flex;
   flex-direction: column;
   background-color: #ffffff;
+  font-family: 'Roboto', sans-serif;
 }
 main {
   display: flex;
@@ -29,6 +30,16 @@ main {
   background-position: center center;
   background-repeat: no-repeat;
   cursor: pointer;
+}
+.game-over {
+  display: block;
+  position: absolute;
+  top: 150px;
+  left: 45px;
+  font-size: 36px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #ffffff;
 }
 .hidden {
   display: none;
