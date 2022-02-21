@@ -8,8 +8,10 @@ const bottomPipe = new Image();
 const pipesGap = 100;
 const gravity = 1.5;
 const takeOffHeight = 25;
+const playBtn = document.querySelector('.play');
 let posX = 10;
 let posY = 250;
+let isStarted = false;
 
 bg.src = "./assets/img/bg.png";
 fg.src = "./assets/img/fg.png";
@@ -23,11 +25,26 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-const pipes = [];
-pipes.push({
-  x: cvs.width,
-  y: Math.floor(Math.random() * topPipe.height) - topPipe.height
-})
+playBtn.addEventListener('click', (e) => {
+  playBtn.classList.add('hidden');
+  reset();
+  isStarted = true;
+  draw();
+});
+
+let pipes = [];
+
+function reset() {
+  ctx.clearRect(0, 0, cvs.width, cvs.height);
+  posX = 10;
+  posY = 250;
+  isStarted = false;
+  pipes = [];
+  pipes.push({
+    x: cvs.width,
+    y: Math.floor(Math.random() * topPipe.height) - topPipe.height
+  });
+}
 
 function draw() {
   ctx.drawImage(bg, 0, 0);
@@ -36,23 +53,33 @@ function draw() {
     ctx.drawImage(topPipe, pipes[i].x, pipes[i].y);
     ctx.drawImage(bottomPipe, pipes[i].x, pipes[i].y + topPipe.height + pipesGap);
     pipes[i].x--;
+    
     if (pipes[i].x == 100) {
       pipes.push({
         x: cvs.width,
         y: Math.floor(Math.random() * topPipe.height) - topPipe.height
       })
     }
+
+    if (posX + bird.width > pipes[i].x && posX < pipes[i].x + topPipe.width 
+      && (posY < pipes[i].y + topPipe.height || posY + bird.height > pipes[i].y + topPipe.height + pipesGap)
+      || posY + bird.height > cvs.height - fg.height) {
+        isStarted = false;
+        playBtn.classList.remove('hidden');
+    }
   }
 
-  if (pipes[0].x+topPipe.width <= 0) {
-      pipes.shift();
+  if (pipes.length > 0 && pipes[0].x+topPipe.width <= 0) {
+    pipes.shift();
   }
 
   ctx.drawImage(fg, 0, cvs.height - fg.height);
   ctx.drawImage(bird, posX, posY);
 
   posY += gravity;
-  requestAnimationFrame(draw);
+  if (isStarted) {
+    requestAnimationFrame(draw); 
+  }
 }
 
 function takeOff() {
