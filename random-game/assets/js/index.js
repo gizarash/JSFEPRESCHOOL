@@ -10,8 +10,9 @@ const gravity = 1.5;
 const takeOffHeight = 25;
 const playBtn = document.querySelector('.play');
 let posX = 10;
-let posY = 250;
+let posY = 200;
 let isStarted = false;
+let score = 0;
 
 bg.src = "./assets/img/bg.png";
 fg.src = "./assets/img/fg.png";
@@ -36,6 +37,7 @@ let pipes = [];
 
 function reset() {
   ctx.clearRect(0, 0, cvs.width, cvs.height);
+  score = 0;
   posX = 10;
   posY = 250;
   isStarted = false;
@@ -67,6 +69,10 @@ function draw() {
         isStarted = false;
         playBtn.classList.remove('hidden');
     }
+
+    if (pipes[i].x + topPipe.width == 10) {
+      score += 10;
+    }
   }
 
   if (pipes.length > 0 && pipes[0].x+topPipe.width <= 0) {
@@ -77,6 +83,11 @@ function draw() {
   ctx.drawImage(bird, posX, posY);
 
   posY += gravity;
+
+  ctx.fillStyle = "#000000";
+  ctx.font = "24px Arial";
+  ctx.fillText(`Score: ${score}`, 10, cvs.height - 30);
+
   if (isStarted) {
     requestAnimationFrame(draw); 
   }
